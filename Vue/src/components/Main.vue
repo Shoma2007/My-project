@@ -1,5 +1,18 @@
 <script>
-
+export default{
+    data(){
+        return{
+            email: '',
+            password: ''
+        }
+    },
+    methods: {
+        CreateApp(){
+            this.email === '';
+            this.password === ''
+        }
+    }
+}
 </script>
 
 <template>
@@ -8,10 +21,10 @@
   <div class="conteiner">
  <h1>Авторизация</h1>
  <label for="">Введите свою почту </label><br>
- <input type="email"><br>
+ <input type="email" v-model="email"><br>
  <label for="">Введите свой пароль</label><br>
- <input type="password"><br>
- <button class="btn">Войти</button>
+ <input type="password" v-model="password"><br>
+ <button class="btn"><router-link to="/dashboard" style="color: black; text-decoration: none"> Войти </router-link></button>
  </div>
     <img src="C:\Users\roma2\OneDrive\Desktop\My-project\Vue\public\zamok.jpg" alt="" width="250px">
 </div>
@@ -48,4 +61,5 @@
   transform: translateY(-5px);
   box-shadow: 2px 2px 2px rgb(212, 126, 6);
 }
+
 </style>
