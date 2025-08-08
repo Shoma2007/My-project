@@ -4,7 +4,7 @@
 <template>
 <div class="conteiner">
         <div class="conte">
-        <h1>Поздравляю вы зарегистрировались</h1>
+        <h1>Поздравляю, вы зарегистрировались</h1>
         <button class="btn"><router-link to="/login" style="color: black; text-decoration: none" > Назад </router-link></button>
         </div>
     </div>

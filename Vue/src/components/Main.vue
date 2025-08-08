@@ -1,15 +1,37 @@
 <script>
+import axios from 'axios'
+
 export default{
     data(){
         return{
             email: '',
-            password: ''
+            password: '',
+            error: ''
         }
     },
     methods: {
-        CreateApp(){
-            this.email === '';
-            this.password === ''
+        async goToLogin(){
+          if(this.email === '' || this.password === ''){
+            this.error = 'Заполните поля';
+            return
+          };
+
+          if (!this.email.includes('@')){
+            this.error = 'Email должен содержать символ @';
+            return
+          };
+
+          try{
+            const response = await axios.post('https://ced1828f6bda4d0a.mokky.dev/Authorization', {
+              email: this.email,
+              password: this.password
+            });
+            if (response.status === 200 || response.status === 201){
+              this.$router.push('/dashboard')
+            }
+          } catch (error){
+
+          }       
         }
     }
 }
@@ -18,13 +40,14 @@ export default{
 <template>
 <main class="main">
     <div class="contenet-wrapper">
-  <div class="conteiner">
+  <div class="conteiner"> 
  <h1>Авторизация</h1>
- <label for="">Введите свою почту </label><br>
- <input type="email" v-model="email"><br>
- <label for="">Введите свой пароль</label><br>
- <input type="password" v-model="password"><br>
- <button class="btn"><router-link to="/dashboard" style="color: black; text-decoration: none"> Войти </router-link></button>
+ <label for="">Введите свою почту </label>
+ <input type="email" v-model="email">
+ <label for="">Введите свой пароль</label>
+ <input type="password" v-model="password">
+  <p v-if="error" style="color: red">{{ error }}</p>
+ <button class="btn" @click="goToLogin">Войти</button>
  </div>
     <img src="C:\Users\roma2\OneDrive\Desktop\My-project\Vue\public\zamok.jpg" alt="" width="250px">
 </div>
