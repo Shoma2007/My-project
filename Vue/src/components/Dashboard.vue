@@ -1,11 +1,29 @@
 <script>
+import axios from 'axios'
+
+export default {
+  methods: {
+    async goToLDashboard() {
+      try {
+        const response = await axios.delete('https://ced1828f6bda4d0a.mokky.dev/Authorization/1')
+        if (response.status === 200 || response.status === 204) {
+          console.log('Данные успешно удалены')
+        }
+      } catch (error) {
+        console.error('Ошибка при удалении:', error)
+      } finally {
+        this.$router.push('/login')
+      }
+    }
+  }
+}
 </script>
 
 <template>
 <div class="conteiner">
         <div class="conte">
         <h1>Поздравляю, вы зарегистрировались</h1>
-        <button class="btn"><router-link to="/login" style="color: black; text-decoration: none" > Назад </router-link></button>
+        <button class="btn" @click="goToLDashboard">Назад</button>
         </div>
     </div>
 </template>

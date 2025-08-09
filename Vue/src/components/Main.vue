@@ -12,14 +12,14 @@ export default{
     methods: {
         async goToLogin(){
           if(this.email === '' || this.password === ''){
-            this.error = 'Заполните поля';
+            this.error = 'Заполните поля'
             return
-          };
+          }
 
-          if (!this.email.includes('@')){
-            this.error = 'Email должен содержать символ @';
+          if (!this.email.includes('@gmail') && !this.email.includes('@mail')){
+            this.error = 'Email должен содержать символ @ и иметь почту (mail, gmail)'
             return
-          };
+          }
 
           try{
             const response = await axios.post('https://ced1828f6bda4d0a.mokky.dev/Authorization', {
@@ -30,7 +30,7 @@ export default{
               this.$router.push('/dashboard')
             }
           } catch (error){
-
+            console.error('Ошибка при добавление:', error)
           }       
         }
     }
