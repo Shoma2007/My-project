@@ -1,20 +1,19 @@
-import { createRouter, createWebHistory } from 'vue-router'
-import Dashboard from '../components/Dashboard.vue'
-import Main from '../components/Main.vue'
+import { createRouter, createWebHistory } from "vue-router";
+import Dashboard from "@/view/Dashboard.vue";
+import HomePage from "@/layout/index.vue";
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
   routes: [
     {
-    path: '/dashboard', 
-    component: Dashboard
-  },
+      path: "/",
+      component: HomePage,
+    },
     {
-      path: '/login', 
-      component: Main,
-      alias: '/'
-  },
+      path: "/dashboard",
+      component: Dashboard,
+    },
   ],
-})
+});
 
-export default router
+export default router;

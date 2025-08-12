@@ -12,7 +12,7 @@ export default {
       } catch (error) {
         console.error('Ошибка при удалении:', error)
       } finally {
-        this.$router.push('/login')
+        this.$router.push('/')
       }
     }
   }
@@ -21,7 +21,7 @@ export default {
 
 <template>
 <div class="conteiner">
-        <div class="conte">
+        <div class="content">
         <h1>Поздравляю, вы зарегистрировались</h1>
         <button class="btn" @click="goToLDashboard">Назад</button>
         </div>
@@ -33,8 +33,9 @@ export default {
     display: flex;
     flex-direction: column;
     align-items: center;
+    color: black;
 }
-.conte{
+.content{
     background-color: #fff;
     border-radius: 10px;
     padding: 10px;

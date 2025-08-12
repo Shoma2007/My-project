@@ -49,7 +49,7 @@ export default{
   <p v-if="error" style="color: red">{{ error }}</p>
  <button class="btn" @click="goToLogin">Войти</button>
  </div>
-    <img src="C:\Users\roma2\OneDrive\Desktop\My-project\Vue\public\zamok.jpg" alt="" width="250px">
+    <img src="@/assets/zamok.jpg" alt="" width="250px">
 </div>
 </main>
 </template>
@@ -60,6 +60,7 @@ export default{
   flex-direction: column;
   align-items: center;
   margin-top: 10%;
+  color: black;
 }
 .contenet-wrapper{
     display: flex;
