@@ -7,16 +7,17 @@
   </div>
 </template>
 
-<script>
-export default {
-  props: {
-    isOpen: Boolean
-  },
-  methods: {
-    closeModal() {
-      this.$emit('close');
-    }
-  }
+<script setup>
+import { defineProps, defineEmits } from 'vue'
+
+const props = defineProps({
+  isOpen: Boolean
+})
+
+const emit = defineEmits(['close'])
+
+const closeModal = () => {
+  emit('close')
 }
 </script>
 

@@ -1,39 +1,33 @@
-<script>
+<script setup>
+import { useRouter } from 'vue-router'
+import { ref } from 'vue'
 import axios from 'axios'
 
-export default{
-    data(){
-        return{
-            email: '',
-            password: '',
-            error: ''
-        }
-    },
-    methods: {
-        async goToLogin(){
-          if(this.email === '' || this.password === ''){
-            this.error = 'Заполните поля'
-            return
-          }
+const router = useRouter()
+const email = ref('')
+const password = ref('')
+const error = ref('')
 
-          if (!this.email.includes('@gmail') && !this.email.includes('@mail')){
-            this.error = 'Email должен содержать символ @ и иметь почту (mail, gmail)'
-            return
-          }
-
-          try{
-            const response = await axios.post('https://ced1828f6bda4d0a.mokky.dev/Authorization', {
-              email: this.email,
-              password: this.password
-            });
-            if (response.status === 200 || response.status === 201){
-              this.$router.push('/dashboard')
-            }
-          } catch (error){
-            console.error('Ошибка при добавление:', error)
-          }       
-        }
-    }
+const goToLogin = async () => {
+  if(email.value === '' || password.value === ''){
+    error.value = 'Заполните поля'
+    return
+  }
+  if (!email.value.includes('@gmail') && !email.value.includes('@mail')){
+    error.value = 'Email должен содержать символ @ и иметь почту (mail, gmail)'
+    return
+  }
+  try{
+      const response = await axios.post('https://ced1828f6bda4d0a.mokky.dev/Authorization', {
+        email: email.value,
+        password: password.value
+      });
+      if (response.status === 200 || response.status === 201){
+        router.push('/dashboard')
+      }
+    } catch (error){
+      console.error('Ошибка при добавление:', error)
+    } 
 }
 </script>
 

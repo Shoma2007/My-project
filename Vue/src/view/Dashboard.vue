@@ -1,9 +1,10 @@
-<script>
+<script setup>
+import { useRouter } from 'vue-router'
 import axios from 'axios'
 
-export default {
-  methods: {
-    async goToLDashboard() {
+const router = useRouter()
+
+const goToLDashboard = async () => {
       try {
         const response = await axios.delete('https://ced1828f6bda4d0a.mokky.dev/Authorization/1')
         if (response.status === 200 || response.status === 204) {
@@ -12,10 +13,8 @@ export default {
       } catch (error) {
         console.error('Ошибка при удалении:', error)
       } finally {
-        this.$router.push('/')
+        router.push('/')
       }
-    }
-  }
 }
 </script>
 

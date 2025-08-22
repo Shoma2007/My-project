@@ -1,25 +1,16 @@
-<script>
+<script setup>
+import { ref } from 'vue'
 import Modal from '@/view/Modal.vue';
 import Main from '@/view/Main.vue';
 
-export default {
-  components: {
-    Modal,
-    Main
-  },
-  data() {
-    return {
-      isModalOpen: false
-    }
-  },
-  methods: {
-    openModal() {
-      this.isModalOpen = true;
-    },
-    closeModal() {
-      this.isModalOpen = false;
-    }
-  }
+const isModalOpen = ref(false)
+
+const openModal = () => {
+  isModalOpen.value = true;
+}
+
+const closeModal = () => {
+  isModalOpen.value = false;
 }
 </script>
 
