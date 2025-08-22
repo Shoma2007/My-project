@@ -1,4 +1,5 @@
-<script>
+<script setup>
+import Button from '@/view/Button.vue';
 </script>
 
 <template>
@@ -8,7 +9,7 @@
     <h2 style="font-size: 50px; margin: 0px 0px 40px 0px;">Store and serve <br>any type of digital content</h2>
     <p>An open source Object store service with unlimited scalability, for<br> any file type.</p>
     <p>With custom policies and permissions that are familiar and easy to<br> implement.</p>
-    <button class="btn">Start a project</button>
+    <Button>Start a project</Button>
     </div>
         <img src="@/assets/acmegram.png" alt="" width="500px">
    </div>
@@ -42,17 +43,7 @@
 }
 
 .btn{
-  margin-top: 10px;
-  padding: 7px;
-  background-color: rgb(14, 186, 40);
-  border-radius: 10px;
-  cursor: pointer;
-  transition: all 0.7s ease;
   color: white;
-}
-.btn:hover{
-  transform: translateY(-5px);
-  box-shadow: 2px 2px 2px rgb(14, 186, 40);
 }
 .content{
     display: flex;

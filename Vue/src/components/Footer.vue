@@ -1,4 +1,6 @@
-<script></script>
+<script setup>
+import Button from '@/view/Button.vue';
+</script>
 
 <template>
        <div class="conteiner">
@@ -14,7 +16,7 @@
    </div>
    <div class="content">
     <p style="font-size: 40px;">Build in a weekend,scale to millions</p>
-    <button class="btn">Start your project</button>
+    <Button>Start your project</Button>
    </div>
    <div class="superbase">
     <div class="superbase_img">
@@ -76,7 +78,10 @@
 .btn{
   background-color: #24B47E;
   padding: 12px;
-  cursor: pointer;
+  color: #fff;
+}
+.btn:hover{
+  box-shadow: 2px 2px 2px #24B47E;
 }
 ul{
     list-style: none;

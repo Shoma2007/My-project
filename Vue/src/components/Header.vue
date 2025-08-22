@@ -2,6 +2,7 @@
 import { ref } from 'vue'
 import Modal from '@/view/Modal.vue';
 import Main from '@/view/Main.vue';
+import Button from '@/view/Button.vue'
 
 const isModalOpen = ref(false)
 
@@ -26,7 +27,7 @@ const closeModal = () => {
       <li>Pricing</li>
     </ul>
     <ul class="authorization_header">
-      <li><button class="btn" @click="openModal">Start your project</button></li>
+      <li><Button @click="openModal">Start your project</Button></li>
       <li>Sign in</li>
     </ul>
 
@@ -37,7 +38,6 @@ const closeModal = () => {
 </template>
 
 <style scoped>
-/* Ваши существующие стили остаются без изменений */
 .header{
   display: flex;
   justify-content: space-evenly;
@@ -56,10 +56,6 @@ ul{
   list-style: none;
 }
 .btn{
-  background-color:  rgb(40, 150, 40);
-  padding: 7px;
-  border-radius: 10px;
-  cursor: pointer;
-  margin-top: -5px;
+  margin-top: -5px
 }
 </style>

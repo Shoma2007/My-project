@@ -1,83 +1,74 @@
 <script setup>
-import { useRouter } from 'vue-router'
-import { ref } from 'vue'
-import axios from 'axios'
+import { useRouter } from "vue-router";
+import { ref } from "vue";
+import axios from "axios";
+import Button from "@/view/Button.vue";
 
-const router = useRouter()
-const email = ref('')
-const password = ref('')
-const error = ref('')
+const router = useRouter();
+const email = ref("");
+const password = ref("");
+const error = ref("");
 
 const goToLogin = async () => {
-  if(email.value === '' || password.value === ''){
-    error.value = 'Заполните поля'
-    return
+  if (email.value === "" || password.value === "") {
+    error.value = "Заполните поля";
+    return;
   }
-  if (!email.value.includes('@gmail') && !email.value.includes('@mail')){
-    error.value = 'Email должен содержать символ @ и иметь почту (mail, gmail)'
-    return
+  if (!email.value.includes("@gmail") && !email.value.includes("@mail")) {
+    error.value = "Email должен содержать символ @ и иметь почту (mail, gmail)";
+    return;
   }
-  try{
-      const response = await axios.post('https://ced1828f6bda4d0a.mokky.dev/Authorization', {
+  try {
+    const response = await axios.post(
+      "https://ced1828f6bda4d0a.mokky.dev/Authorization",
+      {
         email: email.value,
-        password: password.value
-      });
-      if (response.status === 200 || response.status === 201){
-        router.push('/dashboard')
+        password: password.value,
       }
-    } catch (error){
-      console.error('Ошибка при добавление:', error)
-    } 
-}
+    );
+    if (response.status === 200 || response.status === 201) {
+      router.push("/dashboard");
+    }
+  } catch (error) {
+    console.error("Ошибка при добавление:", error);
+  }
+};
 </script>
 
 <template>
-<main class="main">
+  <main class="main">
     <div class="contenet-wrapper">
-  <div class="conteiner"> 
- <h1>Авторизация</h1>
- <label for="">Введите свою почту </label>
- <input type="email" v-model="email">
- <label for="">Введите свой пароль</label>
- <input type="password" v-model="password">
-  <p v-if="error" style="color: red">{{ error }}</p>
- <button class="btn" @click="goToLogin">Войти</button>
- </div>
-    <img src="@/assets/zamok.jpg" alt="" width="250px">
-</div>
-</main>
+      <div class="conteiner">
+        <h1>Авторизация</h1>
+        <label for="">Введите свою почту </label>
+        <input type="email" v-model="email" />
+        <label for="">Введите свой пароль</label>
+        <input type="password" v-model="password" />
+        <p v-if="error" style="color: red">{{ error }}</p>
+        <Button @click="goToLogin">Войти</Button>
+      </div>
+      <img src="@/assets/zamok.jpg" alt="" width="250px" />
+    </div>
+  </main>
 </template>
 
 <style scoped>
-.main{
+.main {
   display: flex;
   flex-direction: column;
   align-items: center;
   margin-top: 10%;
   color: black;
 }
-.contenet-wrapper{
-    display: flex;
-    width: 500px;
-    padding: 20px;
-    border-radius: 10px;
-    background-color: #fff;
+.contenet-wrapper {
+  display: flex;
+  width: 500px;
+  padding: 20px;
+  border-radius: 10px;
+  background-color: #fff;
 }
-.conteiner{
+.conteiner {
   padding: 20px;
   border-radius: 10px;
 }
-.btn{
-  margin-top: 10px;
-  padding: 7px;
-  background-color: rgb(212, 126, 6);
-  border-radius: 10px;
-  cursor: pointer;
-  transition: all 0.7s ease;
-}
-.btn:hover{
-  transform: translateY(-5px);
-  box-shadow: 2px 2px 2px rgb(212, 126, 6);
-}
-
 </style>
