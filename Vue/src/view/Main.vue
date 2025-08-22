@@ -3,6 +3,7 @@ import { useRouter } from "vue-router";
 import { ref } from "vue";
 import axios from "axios";
 import Button from "@/view/Button.vue";
+import Input from "@/view/Input.vue"
 
 const router = useRouter();
 const email = ref("");
@@ -41,9 +42,9 @@ const goToLogin = async () => {
       <div class="conteiner">
         <h1>Авторизация</h1>
         <label for="">Введите свою почту </label>
-        <input type="email" v-model="email" />
+        <Input type="email" v-model="email" />
         <label for="">Введите свой пароль</label>
-        <input type="password" v-model="password" />
+        <Input type="password" v-model="password" />
         <p v-if="error" style="color: red">{{ error }}</p>
         <Button @click="goToLogin">Войти</Button>
       </div>
