@@ -1,5 +1,5 @@
 <template>
-<button class="btn"><slot></slot></button>
+<v-btn class="btn"><slot></slot></v-btn>
 </template>
 
 <style scoped>

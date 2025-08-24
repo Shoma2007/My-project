@@ -1,6 +1,7 @@
 <script setup>
 import { useRouter } from 'vue-router'
 import axios from 'axios'
+import Button from '@/view/Button.vue'
 
 const router = useRouter()
 
@@ -19,12 +20,12 @@ const goToLDashboard = async () => {
 </script>
 
 <template>
-<div class="conteiner">
-        <div class="content">
+    <v-container class="conteiner">
+      <div class="content">
         <h1>Поздравляю, вы зарегистрировались</h1>
-        <button class="btn" @click="goToLDashboard">Назад</button>
-        </div>
-    </div>
+        <Button class="btn" @click="goToLDashboard">Назад</Button>
+      </div>
+    </v-container>
 </template>
 
 <style scoped>

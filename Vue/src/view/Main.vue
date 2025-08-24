@@ -37,39 +37,32 @@ const goToLogin = async () => {
 </script>
 
 <template>
-  <main class="main">
-    <div class="contenet-wrapper">
-      <div class="conteiner">
+  <v-form class="main">
+      <v-container class="conteiner">
         <h1>Авторизация</h1>
-        <label for="">Введите свою почту </label>
+        <label for="">Введите свою почту:</label>
         <Input type="email" v-model="email" />
-        <label for="">Введите свой пароль</label>
+        <label for="">Введите свой пароль:</label>
         <Input type="password" v-model="password" />
         <p v-if="error" style="color: red">{{ error }}</p>
         <Button @click="goToLogin">Войти</Button>
-      </div>
-      <img src="@/assets/zamok.jpg" alt="" width="250px" />
-    </div>
-  </main>
+      </v-container>
+      <img src="@/assets/zamok.jpg" alt="" width="200px" />
+  </v-form>
 </template>
 
 <style scoped>
 .main {
   display: flex;
-  flex-direction: column;
   align-items: center;
   margin-top: 10%;
   color: black;
 }
-.contenet-wrapper {
-  display: flex;
-  width: 500px;
-  padding: 20px;
-  border-radius: 10px;
-  background-color: #fff;
-}
 .conteiner {
+  display: flex;
+  flex-direction: column;
   padding: 20px;
   border-radius: 10px;
+  border: 2px solid blue;
 }
 </style>

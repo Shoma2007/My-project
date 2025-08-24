@@ -1,15 +1,14 @@
 <template>
   <div class="modal-overlay" v-if="isOpen" @click.self="closeModal">
-    <div class="modal-content">
+    <v-container class="modal-content">
       <slot></slot>
       <button @click="closeModal" class="close-btn">x</button>
-    </div>
+    </v-container>
   </div>
 </template>
 
 <script setup>
 import { defineProps, defineEmits } from 'vue'
-
 const props = defineProps({
   isOpen: Boolean
 })
@@ -46,11 +45,12 @@ const closeModal = () => {
 
 .close-btn {
   position: absolute;
-  top: 10px;
+  top: 0px;
   right: 10px;
   background: none;
   border: none;
   font-size: 20px;
   cursor: pointer;
+  color: black;
 }
 </style>

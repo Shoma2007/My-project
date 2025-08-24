@@ -16,31 +16,32 @@ const closeModal = () => {
 </script>
 
 <template>
-  <header class="header">
-    <ul class="navigation_header">
-      <li><img src="@/assets/supabase.png" alt=""></li>
-      <li>Product </li>
-      <li class="navigation_header_img"><img src="@/assets/buttom.png" alt=""></li>
-      <li>Developers </li>
-      <li class="navigation_header_img"><img src="@/assets/buttom.png" alt=""></li>
-      <li>Beta</li>
-      <li>Pricing</li>
-    </ul>
-    <ul class="authorization_header">
-      <li><Button @click="openModal">Start your project</Button></li>
-      <li>Sign in</li>
-    </ul>
+  <v-container class="header">
+    <v-list class="navigation_header">
+      <v-list-item><img src="@/assets/supabase.png" alt=""></v-list-item>
+      <v-list-item>Product </v-list-item>
+      <v-list-item class="navigation_header_img"><img src="@/assets/buttom.png" alt=""></v-list-item>
+      <v-list-item>Developers </v-list-item>
+      <v-list-item class="navigation_header_img"><img src="@/assets/buttom.png" alt=""></v-list-item>
+      <v-list-item>Beta</v-list-item>
+      <v-list-item>Pricing</v-list-item>
+    </v-list>
+    <v-list class="authorization_header">
+      <v-list-item><Button @click="openModal">Start your project</Button></v-list-item>
+      <v-list-item>Sign in</v-list-item>
+    </v-list>
 
     <Modal :isOpen="isModalOpen" @close="closeModal">
       <Main />
     </Modal>
-  </header>
+  </v-container>
 </template>
 
 <style scoped>
 .header{
   display: flex;
   justify-content: space-evenly;
+  margin-top: 20px;
 }
 .navigation_header,
 .authorization_header{
@@ -52,7 +53,7 @@ const closeModal = () => {
   margin-left: -20px;
   cursor: pointer;
 }
-ul{
+v-list{
   list-style: none;
 }
 .btn{
