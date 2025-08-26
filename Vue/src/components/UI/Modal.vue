@@ -1,10 +1,14 @@
 <template>
-  <div class="modal-overlay" v-if="isOpen" @click.self="closeModal">
+  <v-dialog class="modal-overlay" v-if="isOpen" @click.self="closeModal">
     <v-container class="modal-content">
-      <slot></slot>
+      <v-card title="Авторизация">
+        <v-card-text>
+          <slot></slot>
+        </v-card-text>
+      </v-card>
       <button @click="closeModal" class="close-btn">x</button>
     </v-container>
-  </div>
+  </v-dialog>
 </template>
 
 <script setup>
@@ -23,34 +27,22 @@ const closeModal = () => {
 <style scoped>
 .modal-overlay {
   position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background-color: rgba(0, 0, 0, 0.5);
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  width: 500px;
   z-index: 1000;
 }
 
 .modal-content {
-  background: white;
-  padding: 20px;
-  border-radius: 8px;
   position: relative;
-  max-width: 500px;
-  width: 100%;
 }
 
 .close-btn {
   position: absolute;
-  top: 0px;
-  right: 10px;
-  background: none;
-  border: none;
+  top: 10px;
+  right: 20px;
   font-size: 20px;
   cursor: pointer;
   color: black;
 }
 </style>
+
+

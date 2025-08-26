@@ -2,8 +2,8 @@
 import { useRouter } from "vue-router";
 import { ref } from "vue";
 import axios from "axios";
-import Button from "@/view/Button.vue";
-import Input from "@/view/Input.vue"
+import Button from "@/components/UI/Button.vue";
+import Input from "@/components/UI/Input.vue";
 
 const router = useRouter();
 const email = ref("");
@@ -38,16 +38,12 @@ const goToLogin = async () => {
 
 <template>
   <v-form class="main">
-      <v-container class="conteiner">
-        <h1>Авторизация</h1>
-        <label for="">Введите свою почту:</label>
-        <Input type="email" v-model="email" />
-        <label for="">Введите свой пароль:</label>
-        <Input type="password" v-model="password" />
-        <p v-if="error" style="color: red">{{ error }}</p>
-        <Button @click="goToLogin">Войти</Button>
-      </v-container>
-      <img src="@/assets/zamok.jpg" alt="" width="200px" />
+    <v-container class="conteiner">
+      <Input type="email" v-model="email" label="Введите свою почту:" />
+      <Input type="password" v-model="password" label="Введите свой пароль:" />
+      <p v-if="error" style="color: red">{{ error }}</p>
+      <v-btn @click="goToLogin" class="btn" text="Войти" prepend-icon="$vuetify"/>
+    </v-container>
   </v-form>
 </template>
 
@@ -61,8 +57,8 @@ const goToLogin = async () => {
 .conteiner {
   display: flex;
   flex-direction: column;
-  padding: 20px;
+
   border-radius: 10px;
-  border: 2px solid blue;
 }
 </style>
+

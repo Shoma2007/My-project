@@ -1,8 +1,8 @@
 <script setup>
-import Header from "@/components/Header.vue"
-import Storage from '@/components/Storage.vue'
-import SleekDashboard from '@/components/SleekDashboard.vue'
-import Footer from '@/components/Footer.vue'
+import Header from "@/components/UI/Header.vue"
+import Storage from '@/view/Storage.vue'
+import SleekDashboard from '@/view/SleekDashboard.vue'
+import Footer from '@/view/Footer.vue'
 </script>
 
 <template>

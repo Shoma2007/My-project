@@ -11,6 +11,7 @@
   margin-top: -5px;
   transition: all 0.7s ease;
   margin-top: 10px;
+  border: 2px solid black;
 }
 .btn:hover{
   transform: translateY(-5px);
