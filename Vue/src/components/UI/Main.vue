@@ -9,6 +9,8 @@ const router = useRouter();
 const email = ref("");
 const password = ref("");
 const error = ref("");
+const isEnabled = ref(false)
+const isAdmin = ref(true)
 
 const goToLogin = async () => {
   if (email.value === "" || password.value === "") {
@@ -37,12 +39,18 @@ const goToLogin = async () => {
 </script>
 
 <template>
-  <v-form class="main">
+<v-checkbox v-model="isEnabled" label="Включить формы" />
+  <v-form class="main" :disabled="!isEnabled">
     <v-container class="conteiner">
       <Input type="email" v-model="email" label="Введите свою почту:" />
       <Input type="password" v-model="password" label="Введите свой пароль:" />
       <p v-if="error" style="color: red">{{ error }}</p>
-      <v-btn @click="goToLogin" class="btn" text="Войти" prepend-icon="$vuetify"/>
+      <v-checkbox v-model="isAdmin" label="Пользователь-администратор"/>
+      <v-select 
+      :disabled="!isAdmin || !isEnabled"
+      :items="['Зритель', 'Редактор']"
+      />
+      <v-btn @click="goToLogin" text="Войти" prepend-icon="$vuetify"/>
     </v-container>
   </v-form>
 </template>
@@ -51,13 +59,11 @@ const goToLogin = async () => {
 .main {
   display: flex;
   align-items: center;
-  margin-top: 10%;
   color: black;
 }
 .conteiner {
   display: flex;
   flex-direction: column;
-
   border-radius: 10px;
 }
 </style>
