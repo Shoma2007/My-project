@@ -2,7 +2,6 @@
 import { useRouter } from "vue-router";
 import { ref } from "vue";
 import axios from "axios";
-import Button from "@/components/UI/Button.vue";
 import Input from "@/components/UI/Input.vue";
 
 const router = useRouter();
