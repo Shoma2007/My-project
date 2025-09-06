@@ -1,8 +1,12 @@
 <script setup>
 import { useRouter } from 'vue-router'
 import axios from 'axios'
+import Table from '@/view/Table.vue'
+import { ref, onMounted } from 'vue'
 
 const router = useRouter()
+const lists = ref([])
+const tr = ref(false)
 
 const goToLDashboard = async () => {
       try {
@@ -16,14 +20,45 @@ const goToLDashboard = async () => {
         router.push('/')
       }
 }
+
+const table = () => {
+  tr.value = true
+}
+
+defineProps({
+  lists: Array
+})
+
+onMounted(async () => {
+  try {
+    const { data } = await axios.get('https://ced1828f6bda4d0a.mokky.dev/list');
+
+    lists.value = data
+  } catch (error) {
+    console.error("Не удалось загрузить данные:", error);
+  }
+})
 </script>
 
 <template>
 <div class="conteiner">
         <div class="content">
         <h1>Поздравляю, вы зарегистрировались</h1>
-        <button class="btn" @click="goToLDashboard">Назад</button>
+        <div class="cont">
+          <button class="btn" @click="goToLDashboard">Назад</button>
+          <button class="btn" @click="table">Таблица</button>
         </div>
+        </div>
+    </div>
+      <div v-if="tr">
+        <Table 
+        v-for="list in lists"
+        :key="list.id" 
+        :name="list.name" 
+        :age="list.age" 
+        :status="list.status"
+        :number="list.number"
+        />
     </div>
 </template>
 
@@ -51,5 +86,9 @@ const goToLDashboard = async () => {
 .btn:hover{
   transform: translateY(-5px);
   box-shadow: 2px 2px 2px rgb(212, 126, 6);
+}
+.cont{
+  display: flex;
+  justify-content: space-between;
 }
 </style>
