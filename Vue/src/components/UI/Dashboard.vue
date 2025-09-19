@@ -28,18 +28,51 @@ const table = () => {
   tableTrue.value = true
 }
 
-defineProps({
-  lists: Array
-})
-
-onMounted(async () => {
+// Загрузка данных
+const loadData = async () => {
   try {
     const { data } = await axios.get('https://ced1828f6bda4d0a.mokky.dev/list');
-
-    lists.value = data
+    lists.value = data;
   } catch (error) {
     console.error("Не удалось загрузить данные:", error);
   }
+}
+
+// Добавление записи
+const addItem = async (item) => {
+  try {
+    const response = await axios.post('https://ced1828f6bda4d0a.mokky.dev/list', item);
+    lists.value.push(response.data);
+  } catch (error) {
+    console.error("Ошибка при добавлении:", error);
+  }
+}
+
+// Редактирование записи
+const editItem = async (item) => {
+  try {
+    await axios.patch(`https://ced1828f6bda4d0a.mokky.dev/list/${item.id}`, item);
+    const index = lists.value.findIndex(i => i.id === item.id);
+    if (index !== -1) {
+      lists.value[index] = item;
+    }
+  } catch (error) {
+    console.error("Ошибка при редактировании:", error);
+  }
+}
+
+// Удаление записи
+const deleteItem = async (id) => {
+  try {
+    await axios.delete(`https://ced1828f6bda4d0a.mokky.dev/list/${id}`);
+    lists.value = lists.value.filter(item => item.id !== id);
+  } catch (error) {
+    console.error("Ошибка при удалении:", error);
+  }
+}
+
+onMounted(() => {
+  loadData();
 })
 </script>
 
@@ -48,21 +81,20 @@ onMounted(async () => {
     <div class="content"> 
       <h1>Поздравляю, вы зарегистрировались</h1>
       <div class="cont"> 
-      <Button class="btn" @click="goToLDashboard">Назад</Button>
-      <Button class="btn" @click="table">Таблица</Button>
+        <Button class="btn" @click="goToLDashboard">Назад</Button>
+        <Button class="btn" @click="table">Таблица</Button>
       </div>
     </div>
   </v-container>
+  
   <v-container v-if="tableTrue">
-        <Table 
-        v-for="list in lists"
-        :key="list.id" 
-        :name="list.name" 
-        :age="list.age" 
-        :status="list.status"
-        :number="list.number"
-        />
-    </v-container>
+    <Table 
+      :items="lists" 
+      @add-item="addItem"
+      @edit-item="editItem"
+      @delete-item="deleteItem"
+    />
+  </v-container>
 </template>
 
 <style scoped>

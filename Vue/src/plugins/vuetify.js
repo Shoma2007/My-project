@@ -2,7 +2,7 @@ import { createVuetify } from 'vuetify'
 import 'vuetify/styles'
 
 import { VApp, VMain, VContainer, VRow, VCol, VCard, 
-    VCardTitle, VCardText, VForm, VTextField, VSelect, VCheckbox, VBtn, VAppBar, VAppBarTitle, VSnackbar, VDialog, VTable } from 'vuetify/components'
+    VCardTitle, VCardText, VForm, VTextField, VSelect, VCheckbox, VBtn, VAppBar, VAppBarTitle, VSnackbar, VDialog, VTable, VDataTable, VNumberInput } from 'vuetify/components'
 
 const vuetify = createVuetify({
     components: {
@@ -23,7 +23,9 @@ const vuetify = createVuetify({
         VAppBarTitle, 
         VSnackbar,
         VDialog,
-        VTable
+        VTable,
+        VDataTable,
+        VNumberInput
     },
 })
 
