@@ -26,5 +26,7 @@ defineEmits(['update:modelValue'])
 input{
     background-color:rgb(183, 230, 233);
     border-radius: 10px;
+    height: 20px;
+    margin: 0px;
 }
 </style>

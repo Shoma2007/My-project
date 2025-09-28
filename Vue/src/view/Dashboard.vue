@@ -2,11 +2,26 @@
 import { useRouter } from 'vue-router'
 import axios from 'axios'
 import Table from '@/view/Table.vue'
-import { ref, onMounted } from 'vue'
+import { ref, onMounted,computed } from 'vue'
 
 const router = useRouter()
 const lists = ref([])
-const tr = ref(false)
+const tables = ref(false)
+const searchQuery = ref('')
+
+const filteredLists = computed(() => {
+  if (!searchQuery.value) {
+    return lists.value
+  }
+  
+  const query = searchQuery.value.toLowerCase()
+  return lists.value.filter(item => 
+    item.number?.toString().includes(query) ||
+    item.name?.toLowerCase().includes(query) ||
+    item.age?.toString().includes(query) ||
+    item.status?.toLowerCase().includes(query)
+  )
+})
 
 const goToLDashboard = async () => {
       try {
@@ -22,21 +37,24 @@ const goToLDashboard = async () => {
 }
 
 const table = () => {
-  tr.value = true
+  tables.value = true
 }
 
-defineProps({
-  lists: Array
-})
-
-onMounted(async () => {
+const loadData = async () => {
   try {
     const { data } = await axios.get('https://ced1828f6bda4d0a.mokky.dev/list');
-
     lists.value = data
   } catch (error) {
     console.error("Не удалось загрузить данные:", error);
   }
+}
+
+const handleItemUpdated = () => {
+  loadData() 
+}
+
+onMounted(() => {
+  loadData()
 })
 </script>
 
@@ -50,15 +68,12 @@ onMounted(async () => {
         </div>
         </div>
     </div>
-      <div v-if="tr">
+      <div v-if="tables">
         <Table 
-        v-for="list in lists"
-        :key="list.id" 
-        :name="list.name" 
-        :age="list.age" 
-        :status="list.status"
-        :number="list.number"
-        />
+        :search-query="searchQuery"
+        :lists="filteredLists" 
+        @update:search-query="searchQuery = $event"
+        @item-updated="handleItemUpdated" />
     </div>
 </template>
 
